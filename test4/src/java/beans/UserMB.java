@@ -54,21 +54,16 @@ public class UserMB {
         ps.executeUpdate("INSERT INTO Parent (user)  VALUE ('"+user.getId()+"')");
         
 
-        else if(user.getUserType().equals("student") || user.getUserType().equals("instructor"))
+        else if(user.getUserType().equals("student")){
         ps.executeUpdate("INSERT INTO AcademicUser (user)  VALUE ('"+user.getId()+"')");
-  
-        
-        return "signup1";
-    }
-        
-        
-        
-        public void ss(){
-            user.checkValidUser();
+        ps.executeUpdate("INSERT INTO student (user)  VALUE ('"+user.getId()+"')");
         }
-     
+        else if(user.getUserType().equals("instructor")){
+        ps.executeUpdate("INSERT INTO AcademicUser (user)  VALUE ('"+user.getId()+"')");
+        ps.executeUpdate("INSERT INTO instructor (user)  VALUE ('"+user.getId()+"')");
             
-        
+        }
+        }
         
         
         
