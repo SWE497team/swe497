@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+                     <h:outputStylesheet library="css" name="main.css" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
+
+                                <div class="signup">
+
+            <h:form>
+
+                <h1><h:outputText value="Sign up"/></h1>
+                <h:panelGrid columns="1">
+                    <h:outputLabel value="Firstname:" for="firstname" />
+                    <h:inputText id="firstname" value="#{userMB.user.firstname}" title="Firstname" />
+                    <h:outputLabel value="Lastname:" for="lastname" />
+                    <h:inputText id="lastname" value="#{userMB.user.lastname}" title="Lastname" />
+                    <h:outputLabel value="Age:" for="age" />
+                    <h:inputText id="age" value="#{userMB.user.age}" title="Age" />
+                    <h:outputLabel value="Type : " for="type" />
+                    <h:selectOneMenu value="#{userMB.user.userType}">
+                       <f:selectItem itemValue = "student" itemLabel = "Student" /> 
+                       <f:selectItem itemValue = "instructor" itemLabel = "Instructor" /> 
+                       <f:selectItem itemValue = "parent" itemLabel = "Parent" /> 
+                       <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret id="password" value="#{userMB.user.password}" title="Password" />
+                    <h:outputLabel value="Username:" for="username" />
+                    <h:inputText id="username" value="#{userMB.user.username}" title="Username" />
+                    <h:outputLabel value="Discipline:" for="discipline" />
+                    <h:inputText id="discipline" value="#{userMB.user.discipline}" title="Discipline" />
+                    <h:commandButton value="create" action="#{userMB.createUser()}"></h:commandButton>
+                </h:panelGrid>
+            </h:form>
+            
+                </div>
+        
+
+    </h:body>
+</html>
+
