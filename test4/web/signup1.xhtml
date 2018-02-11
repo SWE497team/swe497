@@ -23,19 +23,27 @@
                     <h:inputText id="lastname" value="#{userMB.user.lastname}" title="Lastname" />
                     <h:outputLabel value="Age:" for="age" />
                     <h:inputText id="age" value="#{userMB.user.age}" title="Age" />
+                    
                     <h:outputLabel value="Type : " for="type" />
-                    <h:selectOneMenu value="#{userMB.user.userType}">
+                    <h:selectOneMenu value="#{userMB.user.userType}" style="width:200px;">
                        <f:selectItem itemValue = "student" itemLabel = "Student" /> 
                        <f:selectItem itemValue = "instructor" itemLabel = "Instructor" /> 
                        <f:selectItem itemValue = "parent" itemLabel = "Parent" /> 
                        <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
                     </h:selectOneMenu>
+                    
                     <h:outputLabel value="Password:" for="password" />
                     <h:inputSecret id="password" value="#{userMB.user.password}" title="Password" />
                     <h:outputLabel value="Username:" for="username" />
                     <h:inputText id="username" value="#{userMB.user.username}" title="Username" />
+                    
                     <h:outputLabel value="Discipline:" for="discipline" />
-                    <h:inputText id="discipline" value="#{userMB.user.discipline}" title="Discipline" />
+                    <h:selectOneMenu value="#{userMB.user.discipline}" style="width:200px;">
+                       <f:selectItem itemValue = "swe" itemLabel = "Software Engineering" /> 
+                       <f:selectItem itemValue = "cs" itemLabel = "Computer Science" /> 
+                       <f:selectItem itemValue = "it" itemLabel = "Information Technology" /> 
+                       <f:selectItem itemValue = "ce" itemLabel = "Computer Engineering ( Not recommended )" /> 
+                    </h:selectOneMenu>
                     <h:commandButton value="create" action="#{userMB.createUser()}"></h:commandButton>
                 </h:panelGrid>
             </h:form>
