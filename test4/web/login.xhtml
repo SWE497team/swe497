@@ -7,27 +7,30 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:view>
-            <h:form id="login_frm">
-                <h2>Login Please:</h2>
-                <table width="250" border="0" cellspacing="0" cellpadding="2">
         
-                  <tr>
-                    <td><h:outputText value="Username : "/></td>
-                    <td><h:inputText id="username" value="#{userMB.user.username}" required="true" styleClass="input_text"/></td>
-                  </tr>
-                  <tr>
-                    <td><h:outputText value="Password : "/></td>
-                    <td><h:inputSecret id="password" value="#{userMB.user.password}" required="true" styleClass="input_text"/></td>
-                  </tr>
-                  <tr>
-                      <td colspan="2" align="center">
-                          <h:commandButton action="#{userMB.CheckValidUser}" value="Login" type="submit"/></td>
-                  </tr>
-                </table>
-            </h:form>
-        </f:view>
+              <h:outputStylesheet library="css" name="main.css" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>                 
 
+    	<h:form  class="w3-container">
+                        <div class="login">
+
+            <h1> Login </h1>
+    <label class="w3-text-brown"> <b>User Name</b> </label> <h:inputText id="username" value="#{userMB.user.username}"></h:inputText>
+		<h:message for="username"></h:message>
+		<br></br><br></br>
+		
+		<label class="w3-text-brown"> <b>Password</b> </label><h:inputSecret id="password"  value="#{userMB.user.password}"></h:inputSecret>
+		<h:message for="password"></h:message>
+		<br></br><br></br>
+		  <a href="signup1.xhtml" class="forgot">You dont have an account ?</a>
+                  <h:commandButton action="#{userMB.CheckValidUser}"
+			value="Login"></h:commandButton>
+
+                </div>
+                <div class="shadow"></div>
+	</h:form>
+      
     </h:body>
 </html>
 
