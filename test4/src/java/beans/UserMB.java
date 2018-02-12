@@ -67,7 +67,14 @@ public class UserMB {
             this.hasError = true;
             return "signup1";
         }
-                userFacade.create(user);
+                        Calendar calendar = Calendar.getInstance();
+                        java.sql.Date creation = new java.sql.Date(calendar.getTime().getTime());
+                 user.setCreationDate(creation);
+                 userFacade.create(user);
+                
+
+
+                
 
         if(user.getUserType().equals("admin"))
         ps.executeUpdate("INSERT INTO Admin (user)  VALUE ('"+user.getId()+"')");
