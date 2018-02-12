@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 /**
  *
@@ -52,18 +54,24 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    
+    @Size(min=1)
     @Column(name = "firstname")
     private String firstname;
+    
     @Size(max = 45)
     @Column(name = "lastname")
     private String lastname;
-    @Size(max = 45)
+    
+    @Size(max = 45 )
+    @Min(1) @Max(99)
     @Column(name = "age")
     private String age;
-    @Size(max = 45)
+    
+    @Min(6) 
     @Column(name = "password")
     private String password;
+    
     @Column(name = "creationDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
@@ -209,50 +217,7 @@ public class User implements Serializable {
     public String toString() {
         return "entity.User[ id=" + id + " ]";
     }
-     public String dbData(String UName,String pass)
-    {
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/swe496", "root","1122qqwwaass");
-            Statement ps = con.createStatement();
-            String sql = "Select * from user where username = ('" + UName +"')";
-            ResultSet rs = ps.executeQuery(sql);
-            if(rs.next()){
-                System.out.print("ok");
-                return "admin";
-                
-            }
-   
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            System.out.println("Exception Occur :" + ex);
-        }
-        return "signup";
-    }
-     
-     public String checkValidUser()
-    {
-        dbData(username);
- 
-        if(username.equalsIgnoreCase(username))
-        {
- 
-            if(password.equals(password))
-                return "valid";
-            else
-            {
-                return "invalid";
-            }
-        }
-        else
-        {
-            return "invalid";
-        }
-    }
-     
+
     
     
     
