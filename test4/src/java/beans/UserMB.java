@@ -93,7 +93,7 @@ public class UserMB {
         }
   
         
-        return "login";
+        return "login.xhtml?faces-redirect=true";
     }
 
 
@@ -105,13 +105,12 @@ public class UserMB {
             Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/swe496", "root","1122qqwwaass");
             Statement stmt=con.createStatement();
             ResultSet rs =stmt.executeQuery("select * from user where username='"+user.getUsername()+"' and password='"+user.getPassword()+"'");
-
-         if(rs.next())
+            if(rs.next())
    
-             return "signup1.xhtml?faces-redirect=true";
-         
+             return "adminPage.xhtml?faces-redirect=true";
+
          else 
-             return "Couldn't found user register";
+             return "signup1.xhtml?faces-redirect=true";
        }
             
         catch(Exception e) {
