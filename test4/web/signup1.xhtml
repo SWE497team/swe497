@@ -2,9 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
     <h:head>
-        <title>Facelet Title</title>
+        <title>Sign up</title>
     </h:head>
     <h:body>
                      <h:outputStylesheet library="css" name="main.css" />
@@ -12,39 +14,79 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
 
                                 <div class="signup">
-
             <h:form>
+                
 
-                <h1><h:outputText value="Sign up"/></h1>
-                <h:panelGrid columns="1">
-                    <h:outputLabel value="Firstname:" for="firstname" />
-                    <h:inputText id="firstname" value="#{userMB.user.firstname}" title="Firstname" />
-                    <h:outputLabel value="Lastname:" for="lastname" />
-                    <h:inputText id="lastname" value="#{userMB.user.lastname}" title="Lastname" />
-                    <h:outputLabel value="Age:" for="age" />
-                    <h:inputText id="age" value="#{userMB.user.age}" title="Age" />
+                
+                
+                <h1 style="text-align:center;"><h:outputText value="Sign up"/></h1>
+   <h7 style="display: #{userMB.hasError() ? 'block' : 'none'};color: red;"><h:outputText style="color: red;" />The username is already taken ...</h7>  
+
+                <h:panelGrid columns="1" id="matchGrid">
+                  
+            
                     
-                    <h:outputLabel value="Type : " for="type" />
+               <h:outputLabel for="firstname" value="First name :" style="font-weight:bold"/>
+               <p:inputText id="firstname" value="#{userMB.user.firstname}" label="firstname" validatorMessage="cann't be empty , and Value must be Chars ">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                </p:inputText>
+              <p:message for="firstname" />
+                    
+                    <br/>
+                   
+               <h:outputLabel for="lastname" value="Last name :" style="font-weight:bold"/>
+               <p:inputText id="lastname" value="#{userMB.user.lastname}" label="lastname" validatorMessage="cann't be empty , and Value must be Chars ">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                </p:inputText>
+              <p:message for="lastname" />
+                    <br/>
+                    
+                     <h:outputLabel for="age" value="Age :" style="font-weight:bold"/>
+                     <p:inputText id="age" value="#{userMB.user.age}" label="age">
+                     <f:validateDoubleRange minimum="1" maximum="100" />
+                     </p:inputText>
+                     <p:message for="age" />
+
+                    
+                    <br/>
+                    
+                    <h:outputLabel value="Type : " for="type" style="font-weight:bold" />
                     <h:selectOneMenu value="#{userMB.user.userType}" style="width:200px;">
                        <f:selectItem itemValue = "student" itemLabel = "Student" /> 
                        <f:selectItem itemValue = "instructor" itemLabel = "Instructor" /> 
                        <f:selectItem itemValue = "parent" itemLabel = "Parent" /> 
                        <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
                     </h:selectOneMenu>
+                       <br/>
                     
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputSecret id="password" value="#{userMB.user.password}" title="Password" />
-                    <h:outputLabel value="Username:" for="username" />
-                    <h:inputText id="username" value="#{userMB.user.username}" title="Username" />
-                    
-                    <h:outputLabel value="Discipline:" for="discipline" />
+        <h:outputLabel for="pwd1" value="Password :" style="font-weight:bold" />
+        <p:password id="pwd" value="#{userMB.user.password}" match="pwd2" label="Password" required="true"  feedback="true" />
+ 
+        <h:outputLabel for="ConPwd" value=" Conf Password : " style="font-weight:bold" />
+        <p:password id="pwd2" value="#{userMB.user.password}" label="Con Password" required="true" />
+                     <p:message for="pwd" />
+
+                   <br/>
+                   
+            <h:outputLabel for="username" value="Username :" style="font-weight:bold"/>
+            <p:inputText id="username" value="#{userMB.user.username}" label="username" validatorMessage="Value must be Chars.">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+            </p:inputText>
+            <p:message for="username"/>
+
+            
+            
+                  
+            <br/>
+                    <h:outputLabel value="Discipline:" for="discipline" style="font-weight:bold" />
                     <h:selectOneMenu value="#{userMB.user.discipline}" style="width:200px;">
                        <f:selectItem itemValue = "swe" itemLabel = "Software Engineering" /> 
                        <f:selectItem itemValue = "cs" itemLabel = "Computer Science" /> 
                        <f:selectItem itemValue = "it" itemLabel = "Information Technology" /> 
-                       <f:selectItem itemValue = "ce" itemLabel = "Computer Engineering ( Not recommended )" /> 
+                       <f:selectItem itemValue = "ce" itemLabel = "Computer Engineering " /> 
                     </h:selectOneMenu>
-                    <h:commandButton value="create" action="#{userMB.createUser()}"></h:commandButton>
+<br/>
+                    <p:commandButton value="create" action="#{userMB.createUser()}" update="matchGrid" ajax="false" icon="ui-icon-check" validateClient="true"/>
                 </h:panelGrid>
             </h:form>
             
