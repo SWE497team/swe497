@@ -15,11 +15,16 @@
 <div id="header">
 				<p>Header</p>
         Welcome Admin !
-      <p:commandButton value="Logout" action="#{userMB.logout}"  ajax="false" icon="ui-icon-check" validateClient="true"/>
 
  
         
-        
+      <f:view>
+          <h:form>
+                    <p:commandButton value="Logout" action="#{userMB.logout}"  ajax="false" icon="ui-icon-check" validateClient="true"/>
+
+          </h:form>
+      </f:view>
+
         
      </div>
 </div>
