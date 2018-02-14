@@ -18,6 +18,7 @@ import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -104,29 +105,40 @@ public class UserMB {
    public String CheckValidUser(){
        String username = user.getUsername();
        String password = user.getPassword();
+       HttpSession session = null;
        try {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/swe496", "root","1122qqwwaass");
             Statement stmt=con.createStatement();
             ResultSet rs =stmt.executeQuery("select * from user where username='"+username+"' and password='"+password+"' and userType='admin'");
-            if(rs.next())
-          
+            if(rs.next()){
+          		 session = SessionUtils.getSession();
+			 session.setAttribute("username", username);
              return "adminPage.xhtml?faces-redirect=true";
-            
+            }
             else {
               ResultSet rs2 =stmt.executeQuery("select * from user where username='"+username+"' and password='"+password+"' and userType='student'");
               if(rs2.next()){
-                  System.out.print(username);
-               return "studentPage.xhtml?faces-redirect=true";}
+                         session = SessionUtils.getSession();
+			 session.setAttribute("username", username);
+               return "studentPage.xhtml?faces-redirect=true";
+              }
               else {
               ResultSet rs3 =stmt.executeQuery("select * from user where username='"+user.getUsername()+"' and password='"+user.getPassword()+"' and userType='instructor'");
-              if(rs3.next())
-               return "instructorPage.xhtml?faces-redirect=true";
+              if(rs3.next()){
+                   session = SessionUtils.getSession();
+		   session.setAttribute("username", username);           
+               return "instructorPage.xhtml?faces-redirect=true"; 
+              }
               else {
               ResultSet rs4 =stmt.executeQuery("select * from user where username='"+user.getUsername()+"' and password='"+user.getPassword()+"' and userType='parent'");
-              if(rs4.next())
-               return "parentPage.xhtml?faces-redirect=true";
+              if(rs4.next()){
+                   session = SessionUtils.getSession();
+		   session.setAttribute("username", username);
+              
+               return "parentPage.xhtml?faces-redirect=true"; }
+              
                      
               }  
               }
@@ -143,7 +155,11 @@ public class UserMB {
       }   
  
    
-  
+  public String logout() {
+		HttpSession session = SessionUtils.getSession();
+		session.invalidate();
+		return "login.xhtml?faces-redirect=true";
+	}
   
   
   
