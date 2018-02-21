@@ -2,20 +2,154 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   
     <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello instructor !<f:view>
-            <h:form>
-                      <p:commandButton value="Logout" action="#{userMB.logout}"  ajax="false" icon="ui-icon-check" validateClient="true"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="A layout example that shows off a blog page with a list of posts."/>
+    <title>Instructor Page</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 
-            </h:form>
-        </f:view>
+    
+
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css"/>
+    <!--<![endif]-->
+    
+    
+
+            <link rel="stylesheet" href="resources/css/layouts/blog.css"/>
+    </h:head>
+            <h:body>
+
+
+
+
+
+
+
+<div id="layout" class="pure-g">
+            <div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large">ACCOUNT</a>
+        <a href="#{userMB.logout()}" class="w3-bar-item w3-button w3-padding-large">LOGOUT</a>
+
+  </div>
+</div>
+   <br/>
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <h1 class="brand-title">Welcome     </h1>
+            <h:outputText value="#{userMB.user.username}"/>
+
+            <h2 class="brand-tagline"></h2>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="createGroup.xhtml">Create group</a>
+                    </li>
+                    <br/>
+                    <br/>
+                    <li class="nav-item">
+                        <a class="pure-button" href="post.xhtml">Post</a>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div>
+                <div class="header">
+
+         <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="createGroup.xhtml">Create group</a>
+                    </li>
+                 
+                    <li class="nav-item">
+                        <a class="pure-button" href="createGroup.xhtml">Post</a>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead"> Posts</h1>
+
+                <!-- A single blog post -->
+                <section class="post">
+                    <header class="post-header">
+
+                        <h2 class="post-title">Introducing Pure</h2>
+
+                        <p class="post-meta">
+                            By <a href="#" class="post-author">#{userMB.user.username}</a> 
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            Yesterday at CSSConf, we launched Pure – a new CSS library. Phew! Here are the <a href="https://speakerdeck.com/tilomitra/pure-bliss">slides from the presentation</a>. Although it looks pretty minimalist, we’ve been working on Pure for several months. After many iterations, we have released Pure as a set of small, responsive, CSS modules that you can use in every web project.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="posts">
+                <h1 class="content-subhead">Recent Posts</h1>
+
+                <section class="post">
+                    <header class="post-header">
+
+                        <h2 class="post-title">Everything You Need to Know About Grunt</h2>
+
+                        <p class="post-meta">
+                            By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a class="post-category post-category-js" href="#">JavaScript</a>
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                    </div>
+                </section>
+
+
+
+                <section class="post">
+                    <header class="post-header">
+
+                        <h2 class="post-title">YUI 3.10.2 Released</h2>
+
+                        <p class="post-meta">
+                            By <a class="post-author" href="#">Andrew Wooldridge</a> under <a class="post-category post-category-yui" href="#">YUI</a>
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            We are happy to announce the release of YUI 3.10.2! You can find it now on the Yahoo! CDN, download it directly, or pull it in via npm. We’ve also updated the YUI Library website with the latest documentation.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+ 
+        </div>
+    </div>
+</div>
+
+
 
 
     </h:body>
 </html>
-
