@@ -38,6 +38,10 @@ import javax.validation.constraints.Min;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.loginadmin", query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password and u.userType = 'admin'")
+    , @NamedQuery(name = "User.loginstudent", query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password and u.userType = 'student'")
+    , @NamedQuery(name = "User.logininstructor", query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password and u.userType = 'instructor'")
+    , @NamedQuery(name = "User.loginparent", query = "SELECT u FROM User u WHERE u.username = :username and u.password = :password and u.userType = 'parent'")
     , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
     , @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname")
     , @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname")
@@ -45,6 +49,7 @@ import javax.validation.constraints.Min;
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByCreationDate", query = "SELECT u FROM User u WHERE u.creationDate = :creationDate")
     , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+    , @NamedQuery(name = "User.findBUserType", query = "SELECT u FROM User u WHERE u.userType = :userType")
     , @NamedQuery(name = "User.findByDiscipline", query = "SELECT u FROM User u WHERE u.discipline = :discipline")})
 public class User implements Serializable {
 
@@ -68,7 +73,7 @@ public class User implements Serializable {
     @Column(name = "age")
     private String age;
     
-    @Min(6) 
+    @Size(min = 5, max = 15)
     @Column(name = "password")
     private String password;
     
@@ -216,6 +221,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "entity.User[ id=" + id + " ]";
+        
     }
 
     
