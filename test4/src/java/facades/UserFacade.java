@@ -22,7 +22,7 @@ public class UserFacade extends AbstractFacade<User> {
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return em;
     }
 
@@ -33,5 +33,7 @@ public class UserFacade extends AbstractFacade<User> {
     public void create(Date creation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
     
 }
