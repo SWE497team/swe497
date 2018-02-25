@@ -53,6 +53,10 @@ import javax.validation.constraints.Min;
     , @NamedQuery(name = "User.findByDiscipline", query = "SELECT u FROM User u WHERE u.discipline = :discipline")})
 public class User implements Serializable {
 
+    @Size(max = 45)
+    @Column(name = "userType")
+    private String userType;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,17 +96,11 @@ public class User implements Serializable {
     private Admin admin;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user1")
     private AcademicUser academicUser;
-    private String userType;
+    
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 
     public User() {
+        
     }
 
     public User(Integer id) {
@@ -111,6 +109,14 @@ public class User implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+    
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public void setId(Integer id) {
@@ -223,6 +229,8 @@ public class User implements Serializable {
         return "entity.User[ id=" + id + " ]";
         
     }
+
+ 
 
     
     
