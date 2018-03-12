@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login page</title>
+        	<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet"/>
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="resources/css/Homestyle.css"/>
+    </h:head>
+    <h:body>
+        		<div id="home" class="hero-area">
+			<div class="bg-image bg-parallax " style="background-image:url(resources/img/home-background.jpg)">
+
+              <h:outputStylesheet library="css" name="main.css" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>                 
+        <f:view>
+
+    	<h:form  class="w3-container">
+                        <div class="login">
+
+            <h1> Login </h1>
+
+                <h:panelGrid columns="1" >
+
+            <h:outputLabel for="username" value="Username :" style="font-weight:bold"/>
+            <p:inputText id="username" value="#{userMB.user.username}" label="username" validatorMessage="Value cann't be empty.">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+            </p:inputText>
+            <p:message for="username" />
+		<br></br><br></br>
+		
+		<label class="w3-text-brown"> <b>Password</b> </label><h:inputSecret id="password"  value="#{userMB.user.password}"></h:inputSecret>
+		<br></br><br></br>
+		  <a href="signup1.xhtml" class="forgot">You dont have an account ?</a>
+                <br/>
+                  <p:commandButton value="Login" action="#{userMB.login}"  ajax="false" icon="ui-icon-check" validateClient="true">
+
+                  </p:commandButton>
+                      
+
+                </h:panelGrid>
+
+                </div>
+                <div class="shadow"></div>
+                
+	</h:form>
+            </f:view>
+              </div>
+        </div>
+    </h:body>
+</html>
+

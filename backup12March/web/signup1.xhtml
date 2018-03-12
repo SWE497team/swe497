@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Sign up</title>
+                	<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css"/>
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="resources/css/Homestyle.css"/>
+    </h:head>
+    <h:body>
+                     <h:outputStylesheet library="css" name="main.css" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
+			<div class="bg-image bg-parallax " style="background-image:url(resources/img/home-background.jpg)">
+
+                            <f:view>            
+            <h:form class="signup">
+                 <div class="pure-form pure-form-stacked">
+                         <fieldset>
+
+        <div class="pure-g">
+
+                
+                
+                <h1 style="text-align:center;"><h:outputText value="Sign up"/></h1>
+   <h7 style="display: #{userMB.hasError() ? 'block' : 'none'};color: red;"><h:outputText style="color: red;" />The username is already taken ...</h7>  
+
+                  
+            
+                              <div class="pure-u-1 pure-u-md-1-3">
+  
+               <h:outputLabel for="firstname" value="First name :" style="font-weight:bold"/>
+               <p:inputText id="firstname" value="#{userMB.user.firstname}" label="firstname" validatorMessage="cann't be empty , and Value must be Chars ">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                </p:inputText>
+              <p:message for="firstname" />
+                              </div>
+                               <div class="pure-u-1 pure-u-md-1-3">
+
+               <h:outputLabel for="lastname" value="Last name :" style="font-weight:bold"/>
+               <p:inputText id="lastname" value="#{userMB.user.lastname}" label="lastname" validatorMessage="cann't be empty , and Value must be Chars ">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                </p:inputText>
+              <p:message for="lastname" />
+                               </div>
+                                <div class="pure-u-1 pure-u-md-1-3">
+
+                     <h:outputLabel for="age" value="Age :" style="font-weight:bold"/>
+                     <p:inputText id="age" value="#{userMB.user.age}" label="age">
+                     <f:validateDoubleRange minimum="1" maximum="100" />
+                     </p:inputText>
+                     <p:message for="age" />
+
+                      </div>
+               <div class="pure-u-1 pure-u-md-1-3">
+
+                    <h:outputLabel value="Type : " for="type" style="font-weight:bold" />
+                    <h:selectOneMenu value="#{userMB.user.userType}" style="width:200px;">
+                       <f:selectItem itemValue = "student" itemLabel = "Student" /> 
+                       <f:selectItem itemValue = "instructor" itemLabel = "Instructor" /> 
+                       <f:selectItem itemValue = "parent" itemLabel = "Parent" /> 
+                       <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
+                    </h:selectOneMenu>
+               </div>
+               <div class="pure-u-1 pure-u-md-1-3">
+
+        <h:outputLabel for="pwd1" value="Password :" style="font-weight:bold" />
+        <p:password id="pwd" value="#{userMB.user.password}" match="pwd2" label="Password" required="true"  feedback="true" />
+               </div> 
+              <div class="pure-u-1 pure-u-md-1-3">
+
+   <h:outputLabel for="ConPwd" value=" Conf Password : " style="font-weight:bold" />
+        <p:password id="pwd2" value="#{userMB.user.password}" label="Con Password" required="true" />
+                     <p:message for="pwd" />
+
+              </div>
+               <div class="pure-u-1 pure-u-md-1-3">
+
+            <h:outputLabel for="username" value="Username :" style="font-weight:bold"/>
+            <p:inputText id="username" value="#{userMB.user.username}" label="username" validatorMessage="Value must be Chars.">
+                <f:validateRegex pattern="^[a-zA-Z]+$" />
+            </p:inputText>
+            <p:message for="username"/>
+               </div>
+            
+         
+                  
+            <div class="pure-u-1 pure-u-md-1-3">
+                    <h:outputLabel value="Discipline:" for="discipline" style="font-weight:bold" />
+                    <h:selectOneMenu value="#{userMB.user.discipline}" style="width:200px;">
+                       <f:selectItem itemValue = "swe" itemLabel = "Software Engineering" /> 
+                       <f:selectItem itemValue = "cs" itemLabel = "Computer Science" /> 
+                       <f:selectItem itemValue = "it" itemLabel = "Information Technology" /> 
+                       <f:selectItem itemValue = "ce" itemLabel = "Computer Engineering " /> 
+                    </h:selectOneMenu>
+            </div>       
+        </div>
+<br/>
+   <p:commandButton value="create" action="#{userMB.createUser()}" update="matchGrid" ajax="false" icon="ui-icon-check" validateClient="true"/>
+    </fieldset>
+                                      </div>            
+
+           </h:form>
+            </f:view> 
+                        </div>
+    </h:body>
+</html>
+
